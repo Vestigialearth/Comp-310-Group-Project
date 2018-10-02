@@ -1,0 +1,5 @@
+1. Easter egg function in which the game converts into a different game--
+2. Tie Breaker function in which the game addresses a specific 1-1 or 2-2 scenario
+3. Extra char and string catching, so that the program works even if people try their hardest to break it--
+4. prompting players for their names and storing them into a string variable so that they can be retrieved each time a player is referenced to play--
+5. prompting the player who would like to go first, because the first player always has an advantage in tic tac toe--
