@@ -1,7 +1,8 @@
-import java.util.Scanner;
 import java.util.*;
+import java.util.Random;
+import java.util.Scanner;
 
-public class NickPatsTicTacToeFinalxx {
+public class Comp330FinalProject {
        //https://www.youtube.com/watch?v=R51BIlAt_Hg
    public static Scanner scan = new Scanner(System.in);
        //simple scanner
@@ -246,7 +247,14 @@ public class NickPatsTicTacToeFinalxx {
     do{
         beginGame();
         mainMethod();
-        
+         if (winCountForX==1 && winCountForO==1){
+           initGame();
+             while (restartGame())
+            {
+              initGame();
+            }
+            
+            }
                  if (stateOfBoard == gameEndedInDraw) {
               System.out.println("The game ended in a draw. want to play again?");
               System.out.println("Are you going to play again? Y/N");
@@ -295,20 +303,17 @@ public class NickPatsTicTacToeFinalxx {
 
             }
             }
-            
+
     }
            while("y".equalsIgnoreCase(replay));
     //why do none of my methods for mainMethod recursion work?
   }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-import java.util.*;
-import java.util.Random;
-import java.util.Scanner;
-public class Comp330RockPaperScissors
-{
+///////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
     public static int playerScore = 0;
     public static int gameCountForRPS = 0;
-    public static Scanner scan = new Scanner(System.in);
+    public static Scanner RSPscan = new Scanner(System.in);
     public static String computerChoice()
     {
         Random myRandomInt = new Random();
@@ -325,7 +330,7 @@ public class Comp330RockPaperScissors
     public static boolean restartGame()
     {
         System.out.println("Play again?(Y/N)");
-        String input = scan.nextLine();
+        String input = RSPscan.nextLine();
         if (input.toLowerCase().equals("y"))
         {
             return true;
@@ -344,7 +349,7 @@ public class Comp330RockPaperScissors
         do
         {
             System.out.println("Congratulations! You found the easter egg! Play Rock Paper Scissors!(choose Paper,Scissors or Rock)");
-            isUser = scan.nextLine();
+            isUser = RSPscan.nextLine();
         } 
         while (!isValidChoice(isUser));
         return isUser;
@@ -406,18 +411,9 @@ public class Comp330RockPaperScissors
         System.out.println("The total games played were: " + gameCountForRPS + " and your score is " + playerScore);
         return;
     }
-    public static void main(String[] args)
-    {
-        initGame();
-        while (restartGame())
-        {
-            initGame();
-        }
-    }
         public static void initGame()
     {   String isComputer = computerChoice();
         String isUser = userChoice();
         winnerChoice(isComputer, isUser);
     }
-}
 }
