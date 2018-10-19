@@ -1,0 +1,119 @@
+import java.util.*;
+import java.util.Random;
+import java.util.Scanner;
+public class Comp330RockPaperScissors
+{
+    public static int playerScore = 0;
+    public static int gameCountForRPS = 0;
+    public static Scanner scan = new Scanner(System.in);
+    public static String computerChoice()
+    {
+        Random myRandomInt = new Random();
+        int inputFromComputer = myRandomInt.nextInt(3) + 1;
+        String isComputer = "anon";
+        if (inputFromComputer == 1)
+            isComputer = "Rock";
+        if (inputFromComputer == 2)
+            isComputer = "Paper";
+        if (inputFromComputer == 3)
+            isComputer = "Scissors";
+        return isComputer;
+    }    
+    public static boolean restartGame()
+    {
+        System.out.println("Play again?(Y/N)");
+        String input = scan.nextLine();
+        if (input.toLowerCase().equals("y"))
+        {
+            return true;
+        } else if (input.toLowerCase().equals("n"))
+        {
+            return false;
+        } else
+        {
+            System.out.println("My apologies, that was an invalid input");
+            return restartGame();
+        }
+    }  
+    public static String userChoice()
+    {
+        String isUser = "Anon";
+        do
+        {
+            System.out.println("Congratulations! You found the easter egg! Play Rock Paper Scissors!(choose Paper,Scissors or Rock)");
+            isUser = scan.nextLine();
+        } 
+        while (!isValidChoice(isUser));
+        return isUser;
+    }
+    public static boolean isValidChoice(String choice)
+    {
+        boolean gameStatus;
+        if (choice.equals("Rock"))
+            gameStatus = true;
+        else if (choice.equals("Paper"))
+            gameStatus = true;
+        else if (choice.equals("Scissors"))
+            gameStatus = true;
+        else
+        {
+            gameStatus = false;
+            System.out.println("Error! Make sure you are capitalizing your choices");
+        }
+        return gameStatus;
+    }
+    public static void winnerChoice(String computer, String user)
+    {
+        System.out.println("Computer Choice: " + computer);
+        System.out.println("Your Choice : " + user);
+        gameCountForRPS++;
+                if (computer.equals("Rock") && user.equals("Paper"))
+        {
+            playerScore++;
+            System.out.println("You won");
+        }
+        if (computer.equals("Scissors") && user.equals("Rock"))
+        {
+            playerScore++;
+            System.out.println("You won");
+        }
+        if (computer.equals("Rock") && user.equals("Scissors"))
+        {
+            playerScore--;
+            System.out.println("Sorry! The computer won");
+        }
+        if (computer.equals("Scissors") && user.equals("Paper"))
+        {
+            playerScore--;
+            System.out.println("Sorry! The computer won");
+        }
+        if (computer.equals("Paper") && user.equals("Rock"))
+        {
+            playerScore--;
+            System.out.println("Sorry! The computer won");
+        }
+        if (computer.equals("Paper") && user.equals("Scissors"))
+        {
+            playerScore++;
+            System.out.println("You won");
+        } else if (computer.equals(user))
+        {
+            System.out.println("The game has ended in a tie.");
+        }
+        System.out.println("The total games played were: " + gameCountForRPS + " and your score is " + playerScore);
+        return;
+    }
+    public static void main(String[] args)
+    {
+        initGame();
+        while (restartGame())
+        {
+            initGame();
+        }
+    }
+        public static void initGame()
+    {   String isComputer = computerChoice();
+        String isUser = userChoice();
+        winnerChoice(isComputer, isUser);
+    }
+}
