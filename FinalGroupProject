@@ -247,7 +247,14 @@ public class Comp330FinalProject {
     do{
         beginGame();
         mainMethod();
-        
+         if (winCountForX==1 && winCountForO==1){
+           initGame();
+             while (restartGame())
+            {
+              initGame();
+            }
+            
+            }
                  if (stateOfBoard == gameEndedInDraw) {
               System.out.println("The game ended in a draw. want to play again?");
               System.out.println("Are you going to play again? Y/N");
@@ -296,14 +303,7 @@ public class Comp330FinalProject {
 
             }
             }
-         if (winCountForX==2 && winCountForO==2){
-           initGame();
-             while (restartGame())
-            {
-              initGame();
-            }
-            
-            }
+
     }
            while("y".equalsIgnoreCase(replay));
     //why do none of my methods for mainMethod recursion work?
